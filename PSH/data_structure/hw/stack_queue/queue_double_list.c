@@ -15,6 +15,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define DUMMY_NODE		1
+#define NORMAL_NODE		0
+
 typedef struct _queue {
 	int data;
 	struct _queue *prev;
@@ -28,6 +31,40 @@ queue* create_queue(void)
 	tmp->next = NULL;
 	return tmp;
 }
+
+#if DUMMY_NODE 
+/* 
+void enqueue_data(queue **node, int data)
+	
+	To do
+	1)	dummy node를 활용하기, dummy node 및 create로 생성되는 노드의 next가 자기 자신을 가리키는 노드로 구현
+	=>  위에서는 *node가 존재하지 않을 때 신규 노드를 생성 했지만 *node == (*node)->next 일 때 신규 노드를 지정하도록 구현
+
+	Debug
+    1)	최초 dummy는 한 번 사용되고 그 이후로는 main의 node가 dummy를 가리키지 않게 된다.  
+    2)	create_queue 코드도 변경이 필요하며 맨 마지막 노드의 next가 null아 아닌 자기 자신인 단점이 있음
+	3)	print문도 null이 아닐때까지 출력이 아니라 *node == (*node)->next 일 때 까지 출력으로 바꿔야 하는 단점 
+	
+*/
+void enqueue_data(queue **node, int data)
+{
+	queue *tmp;
+
+	if(*node == (*node)->next)
+	{
+		tmp = create_queue();
+		tmp->data = data;		
+		tmp->next = tmp;
+		tmp->prev = (*node);
+		(*node)->next = tmp;
+	}
+	else
+	{
+		enqueue_data(&(*node)->next, data);
+	}
+}
+
+#else
 /*
 void enqueue_data(queue **node, int data)
 
@@ -39,7 +76,6 @@ void enqueue_data(queue **node, int data)
     =>  수업시간에 배운 주소를 넘겨서 처리하는 방법의 필요성을 다시한번 깨닫게 됨 
 
 */
-
 void enqueue_data(queue **node, int data)
 {
 	queue *tmp = *node;
@@ -50,9 +86,10 @@ void enqueue_data(queue **node, int data)
 	}
 	else {
 		enqueue_data(&(*node)->next, data);
-		(*node)->next->prev = tmp;
+		(*node)->next->prev = tmp; //Prev 구현 전략
 	}
 }
+#endif
 
 /*
 void enqueue_idx_data(queue **node, int idx, int data)
@@ -129,6 +166,22 @@ void print_queue(queue *node)
 */
 void print_queue(queue *node)
 {
+/* dummy 노드  사용하면서 추가*/
+#if DUMMY_NODE 
+	while(node != (node->next))
+	{
+		printf("queue data = %d ", node->data);
+		if(node->prev)
+			printf("prev = %d ", node->prev->data);
+		else
+			printf("prev = NULL ");
+		if(node->next)
+			printf("next = %d\n", node->next->data);
+		else
+			printf("next = NULL\n");
+		node = node->next;
+	}
+#else 
 	while(node)
 	{
 		printf("queue data = %d ", node->data);
@@ -142,11 +195,19 @@ void print_queue(queue *node)
 			printf("next = NULL\n");
 		node = node->next;
 	}
+#endif
 }
 
 int main(void)
 {
-	queue *node; 
+#if DUMMY_NODE 
+	queue *dummy = create_queue();
+	dummy->next = dummy;
+	queue *node = dummy;
+#else
+	queue *node = NULL;
+#endif
+
 	int data[] = {10, 20, 30, 40};
 
 	for(int i=0; i<4; i++)
@@ -154,12 +215,14 @@ int main(void)
 
 	print_queue(node);	
 
+#if 0
 	//enqueue_idx_data(&node, 0, 50);
 	//enqueue_idx_data(&node, 2, 50);
 	//enqueue_idx_data(&node, 5, 50);
-	enqueue_idx_data(&node, 7, 50);
+	//enqueue_idx_data(&node, 7, 50);
 
-	print_queue(node);	
+	//print_queue(node);	
+#endif
 
 #if 0
 	while(!queue_is_empty(node))
@@ -168,6 +231,8 @@ int main(void)
 		print_queue(node);	
 	}
 #endif
+
+	free(dummy);
 
 	return 0;
 }
