@@ -1,0 +1,45 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+DUMMY_NODE	queue_double_list.c	18;"	d	file:
+NEXT	stack_double_list.c	14;"	d	file:
+NORMAL_NODE	queue_double_list.c	19;"	d	file:
+PREV	stack_double_list.c	13;"	d	file:
+_queue	queue_double_list.c	/^typedef struct _queue {$/;"	s	file:
+_stack	stack_double_list.c	/^typedef struct _stack {$/;"	s	file:
+_stack	stack_mine.c	/^typedef struct _stack {$/;"	s	file:
+create_queue	queue_double_list.c	/^queue* create_queue(void)$/;"	f
+create_stack	stack_double_list.c	/^stack* create_stack(void)$/;"	f
+create_stack	stack_mine.c	/^stack* create_stack(void)$/;"	f
+data	queue_double_list.c	/^	int data;$/;"	m	struct:_queue	file:
+data	stack_double_list.c	/^	int data;	$/;"	m	struct:_stack	file:
+data	stack_mine.c	/^	int data;	$/;"	m	struct:_stack	file:
+dequeue_data	queue_double_list.c	/^void dequeue_data(queue **node)$/;"	f
+enqueue_data	queue_double_list.c	/^void enqueue_data(queue **node, int data)$/;"	f
+enqueue_idx_data	queue_double_list.c	/^void enqueue_idx_data(queue **node, int idx, int data)$/;"	f
+enqueue_idx_data_nr	queue_double_list.c	/^void enqueue_idx_data_nr(queue **node, int idx, int data)$/;"	f
+link	stack_mine.c	/^	struct _stack *link;$/;"	m	struct:_stack	typeref:struct:_stack::_stack	file:
+main	queue_double_list.c	/^int main(void)$/;"	f
+main	stack_double_list.c	/^int main(void)$/;"	f
+main	stack_mine.c	/^int main(void)$/;"	f
+next	queue_double_list.c	/^	struct _queue *next;$/;"	m	struct:_queue	typeref:struct:_queue::_queue	file:
+next	stack_double_list.c	/^	struct _stack *next;$/;"	m	struct:_stack	typeref:struct:_stack::_stack	file:
+pop_stack	stack_double_list.c	/^int pop_stack(stack **top)$/;"	f
+pop_stack	stack_mine.c	/^int pop_stack(stack **top)$/;"	f
+prev	queue_double_list.c	/^	struct _queue *prev;$/;"	m	struct:_queue	typeref:struct:_queue::_queue	file:
+prev	stack_double_list.c	/^	struct _stack *prev;$/;"	m	struct:_stack	typeref:struct:_stack::_stack	file:
+print_queue	queue_double_list.c	/^void print_queue(queue *node)$/;"	f
+print_stack	stack_double_list.c	/^void print_stack(stack *top)$/;"	f
+print_stack	stack_mine.c	/^void print_stack(stack *top)$/;"	f
+print_stack_cnt	stack_double_list.c	/^void print_stack_cnt(stack *top, int cnt)$/;"	f
+push_stack	stack_double_list.c	/^void push_stack(stack **top, int data)$/;"	f
+push_stack	stack_mine.c	/^void push_stack(stack **top, int data)$/;"	f
+queue	queue_double_list.c	/^} queue;$/;"	t	typeref:struct:_queue	file:
+queue_is_empty	queue_double_list.c	/^bool queue_is_empty(queue *node)$/;"	f
+stack	stack_double_list.c	/^} stack;$/;"	t	typeref:struct:_stack	file:
+stack	stack_mine.c	/^} stack;$/;"	t	typeref:struct:_stack	file:
+stack_is_empty	stack_double_list.c	/^bool stack_is_empty(stack *top)$/;"	f
+stack_is_empty	stack_mine.c	/^bool stack_is_empty(stack *top)$/;"	f
